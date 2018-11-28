@@ -43,7 +43,7 @@ function reducer(state, action) {
 
 function Stopwatch() {
   // 🐨 2. rename `dispatch` to `setState`
-  const [{running, lapse}, dispatch] = useReducer(reducer, {
+  const [{running, lapse}, setState] = useReducer(reducer, {
     running: false,
     lapse: 0,
   })
@@ -58,17 +58,17 @@ function Stopwatch() {
       const startTime = Date.now() - lapse
       timerRef.current = setInterval(() => {
         // 🐨 3. call `setState` instead
-        dispatch({type: 'LAPSE', now: Date.now(), startTime})
+        setState({type: 'LAPSE', now: Date.now(), startTime})
       }, 0)
     }
     // 🐨 4. call `setState` instead
-    dispatch({type: 'TOGGLE_RUNNING'})
+    setState({type: 'TOGGLE_RUNNING'})
   }
 
   function handleClearClick() {
     clearInterval(timerRef.current)
     // 🐨 5. call `setState` instead
-    dispatch({type: 'CLEAR'})
+    setState({type: 'CLEAR'})
   }
 
   return (

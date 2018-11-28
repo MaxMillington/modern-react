@@ -71,8 +71,7 @@ function Stopwatch() {
   function handleClearClick() {
     clearInterval(timerRef.current)
     // 🐨 6. swap this with a call to dispatch
-    dispatch({ type: 'LAPSE', lapse: 0})
-    dispatch({ type: 'RUNNING', running: false})
+    dispatch({type: 'CLEAR'})
   }
 
   return (

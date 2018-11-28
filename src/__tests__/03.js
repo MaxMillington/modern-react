@@ -1,7 +1,7 @@
 import React from 'react'
 import {render, fireEvent, flushEffects} from 'react-testing-library'
-import Usage from '../exercises-final/03'
-// import Usage from '../exercises/03'
+// import Usage from '../exercises-final/03'
+import Usage from '../exercises/03'
 
 afterEach(() => {
   window.localStorage.removeItem('count')
@@ -29,8 +29,8 @@ test('Usage works', async () => {
 /*
 http://ws.kcd.im/?ws=react%20patterns&e=01&em=
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////

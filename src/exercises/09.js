@@ -14,14 +14,12 @@ function reducer(currentState, newState) {
   return {...currentState, ...newState}
 }
 
-function Stopwatch() {
-  // 🐨 1. put all the logic for the stopwatch (including event handlers)
-  // in a custom hook called useStopwatch
-  // return the state, and event handlers in an object
+const useStopwatch = () => {
   const [{running, lapse}, setState] = useReducer(reducer, {
     running: false,
     lapse: 0,
   })
+
   const timerRef = useRef(null)
 
   useEffect(() => () => clearInterval(timerRef.current), [])
@@ -43,6 +41,18 @@ function Stopwatch() {
     setState({running: false, lapse: 0})
   }
 
+
+  return { handleRunClick, handleClearClick, running, lapse }
+}
+
+function Stopwatch() {
+  // 🐨 1. put all the logic for the stopwatch (including event handlers)
+  // in a custom hook called useStopwatch
+  // return the state, and event handlers in an object
+
+  const stopWatchOne = useStopwatch()
+  const stopWatchTwo = useStopwatch()
+
   // 🐨 2. call your useStopwatch custom hook and get the state and event handlers
   // for two individual stopwatches.
 
@@ -53,10 +63,23 @@ function Stopwatch() {
   return (
     <div style={{textAlign: 'center'}}>
       <StopwatchView
-        lapse={lapse}
-        running={running}
-        onRunClick={handleRunClick}
-        onClearClick={handleClearClick}
+        lapse={stopWatchOne.lapse}
+        running={stopWatchOne.running}
+        onRunClick={stopWatchOne.handleRunClick}
+        onClearClick={stopWatchOne.handleClearClick}
+      />
+      <hr />
+      <strong>Lapse Difference:</strong>
+      <span data-testid="diff">
+        {stopWatchOne.lapse - stopWatchTwo.lapse}
+        ms
+      </span>
+      <hr />
+      <StopwatchView
+        lapse={stopWatchTwo.lapse}
+        running={stopWatchTwo.running}
+        onRunClick={stopWatchTwo.handleRunClick}
+        onClearClick={stopWatchTwo.handleClearClick}
       />
     </div>
   )

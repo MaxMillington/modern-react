@@ -1,7 +1,8 @@
 import React from 'react'
 import {render, fireEvent} from 'react-testing-library'
-import Usage, {useCounter} from '../exercises-final/02'
-// import Usage from '../exercises/02'
+// import Usage, {useCounter} from '../exercises-final/02'
+import Usage from '../exercises/02'
+import { useCounter } from '../exercises/02'
 
 test('Usage works', () => {
   const {container} = render(<Usage />)
@@ -36,8 +37,8 @@ test('useCounter works', () => {
 /*
 http://ws.kcd.im/?ws=react%20patterns&e=01&em=
 */
-test.skip('I submitted my elaboration and feedback', () => {
-  const submitted = false // change this when you've submitted!
+test('I submitted my elaboration and feedback', () => {
+  const submitted = true // change this when you've submitted!
   expect(submitted).toBe(true)
 })
 ////////////////////////////////
